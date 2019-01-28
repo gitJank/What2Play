@@ -2,15 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core'
 
-import { ReactIcon, MongoIcon, ExpressIcon, NodejsIcon } from '../Assets/index'
-
 const styles = theme => ({
   title: {
     color: theme.palette.primary.main,
     fontSize: '48px',
     fontWeight: 'normal'
   },
-  circle: {
+  titleCard: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -26,35 +24,14 @@ const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  logoContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    width: '80%',
-    margin: '32px',
-    padding: '16px',
-    border: `4px solid ${theme.palette.primary.main}`,
-    borderRadius: '8px',
-    background: theme.palette.secondary.main
-  },
-  icon: {
-    height: '160px',
-    width: '160px'
   }
 })
 
 const HomePage = ({ classes }) => {
   return (
     <div className={classes.container}>
-      <div className={classes.circle}>
-        <h1 className={classes.title}>MERN-Boilerplate</h1>
-      </div>
-      <div className={classes.logoContainer}>
-        <MongoIcon className={classes.icon} />
-        <ExpressIcon className={classes.icon} />
-        <ReactIcon className={classes.icon} />
-        <NodejsIcon className={classes.icon} />
+      <div className={classes.titleCard}>
+        <h1 className={classes.title}>What 2 Play</h1>
       </div>
     </div>
   )
