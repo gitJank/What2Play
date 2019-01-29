@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Web app to choose random songs to learn and play on guitar",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --mode development --config ./webpack/webpack.dev.config.js --open --hot --port 8080"
+    "start": "node server/server.js",
+    "startFe": "./node_modules/.bin/webpack-dev-server --mode development --config ./webpack/webpack.dev.config.js --open --hot --port 8080",
+    "build": "webpack --config ./webpack/webpack.prod.config.js --mode production",
+    "heroku-postbuild": "webpack --config ./webpack/webpack.prod.config.js --mode production"
   },
   "author": "Justin Jankiewicz",
   "license": "MIT",
@@ -14,6 +17,7 @@
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "depcheck": "^0.7.1",
+    "express": "^4.16.4",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
