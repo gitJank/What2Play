@@ -35,7 +35,7 @@ class HomePage extends Component {
 
     axios({
       method: 'GET',
-      url: 'http://localhost:3000/api/spotify',
+      url: `${process.env.API_URL}/api/spotify`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
