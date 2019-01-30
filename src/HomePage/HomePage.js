@@ -18,7 +18,7 @@ class HomePage extends Component {
 
     this.state = {
       genre: 'rock',
-      decade: 60,
+      decade: 90,
       trackTitle: 'Placeholder',
       isLoading: false
     }
@@ -33,6 +33,8 @@ class HomePage extends Component {
   submitForm = e => {
     e.preventDefault()
 
+    const { genre, decade } = this.state
+
     axios({
       method: 'GET',
       url: `${process.env.API_URL}/api/spotify`,
@@ -40,13 +42,18 @@ class HomePage extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      mode: 'cors'
+      mode: 'cors',
+      params: {
+        genre,
+        decade
+      }
     })
       .then(res => {
         console.log(res)
         this.setState({
           isLoading: false,
-          trackTitle: res.data.tracks.items[0].track.name
+          trackTitle: res.data.name,
+          artistName: res.data.artists[0].name
         })
       })
       .catch(err => {
@@ -59,7 +66,7 @@ class HomePage extends Component {
 
   render() {
     const { classes } = this.props
-    const { genre, decade, isLoading, trackTitle } = this.state
+    const { genre, decade, isLoading, trackTitle, artistName } = this.state
     return (
       <div className={classes.container}>
         <Paper className={classes.titleCard}>
@@ -71,10 +78,7 @@ class HomePage extends Component {
             What 2 Play
           </Typography>
         </Paper>
-        <form
-          className={classes.form}
-          onSubmit={e => this.submitForm(e, { genre, decade })}
-        >
+        <form className={classes.form} onSubmit={e => this.submitForm(e)}>
           <FormControl className={classes.select}>
             <InputLabel htmlFor="genre">Genre</InputLabel>
             <Select
@@ -126,6 +130,7 @@ class HomePage extends Component {
           </div>
         </form>
         <span>{trackTitle}</span>
+        <span>{artistName}</span>
       </div>
     )
   }

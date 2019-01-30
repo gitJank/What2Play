@@ -1,7 +1,8 @@
 const SpotifyWebApi = require('spotify-web-api-node')
 
+const { clientSecret } = require('../../config/config')
+
 const clientId = '37ff54f48ba446cc9798f85c0ab39db3'
-const clientSecret = '41c40faccb764f4cae8e9af9d73eebad'
 
 // Create the api object with the credentials
 const spotifyApi = new SpotifyWebApi({
@@ -12,7 +13,6 @@ const spotifyApi = new SpotifyWebApi({
 // Retrieve an access token.
 spotifyApi.clientCredentialsGrant().then(
   data => {
-    // eslint-disable-next-line dot-notation
     spotifyApi.setAccessToken(data.body['access_token'])
   },
   err => {
@@ -21,9 +21,25 @@ spotifyApi.clientCredentialsGrant().then(
 )
 
 exports.get = (req, res) => {
-  spotifyApi.getPlaylist('5MM1npNlbGpL16JcIFO8LS').then(
+  const { genre } = req.query
+  let playlistId
+  switch (genre) {
+    case 'rock':
+      playlistId = '2MTatPQetkXpe9jsBVsIwb'
+      break
+    default:
+      playlistId = '5MM1npNlbGpL16JcIFO8LS'
+  }
+
+  // res.data.tracks.items[0].track.name
+
+  spotifyApi.getPlaylist(playlistId).then(
     data => {
-      res.status(200).json(data.body)
+      const songs = data.body.tracks.items
+
+      const index = Math.floor(Math.random() * songs.length + 1)
+
+      res.status(200).json(songs[index].track)
     },
     err => {
       console.log(err)
