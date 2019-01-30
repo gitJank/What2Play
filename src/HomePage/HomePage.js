@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
+import axios from 'axios'
 import styles from './HomePage.styles'
 
 class HomePage extends Component {
@@ -19,6 +19,7 @@ class HomePage extends Component {
     this.state = {
       genre: 'rock',
       decade: 60,
+      trackTitle: 'Placeholder',
       isLoading: false
     }
   }
@@ -32,18 +33,33 @@ class HomePage extends Component {
   submitForm = e => {
     e.preventDefault()
 
-    this.setState({
-      isLoading: true
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3000/api/spotify',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors'
     })
-
-    setTimeout(() => {
-      window.location = '/'
-    }, 3000)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          isLoading: false,
+          trackTitle: res.data.tracks.items[0].track.name
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState({
+          isLoading: false
+        })
+      })
   }
 
   render() {
     const { classes } = this.props
-    const { genre, decade, isLoading } = this.state
+    const { genre, decade, isLoading, trackTitle } = this.state
     return (
       <div className={classes.container}>
         <Paper className={classes.titleCard}>
@@ -109,6 +125,7 @@ class HomePage extends Component {
             ) : null}
           </div>
         </form>
+        <span>{trackTitle}</span>
       </div>
     )
   }

@@ -16,11 +16,13 @@
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "depcheck": "^0.7.1",
     "express": "^4.16.4",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "spotify-web-api-node": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
