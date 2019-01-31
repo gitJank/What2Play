@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'
+
+import { genres, decades } from '../../emuns'
 import styles from './HomePage.styles'
 
 class HomePage extends Component {
@@ -17,8 +19,8 @@ class HomePage extends Component {
     super(props)
 
     this.state = {
-      genre: 'rock',
-      decade: 90,
+      genre: genres.ROCK,
+      decade: decades.NINETIES,
       trackTitle: 'Placeholder',
       isLoading: false
     }
@@ -32,6 +34,9 @@ class HomePage extends Component {
 
   submitForm = e => {
     e.preventDefault()
+    this.setState({
+      isLoading: true
+    })
 
     const { genre, decade } = this.state
 
@@ -89,11 +94,11 @@ class HomePage extends Component {
                 id: 'genre-select'
               }}
             >
-              <MenuItem value="rock">Rock</MenuItem>
-              <MenuItem value="metal">Metal</MenuItem>
-              <MenuItem value="country">Country</MenuItem>
-              <MenuItem value="blues">Blues</MenuItem>
-              <MenuItem value="folk">Folk</MenuItem>
+              <MenuItem value={genres.ROCK}>Rock</MenuItem>
+              <MenuItem value={genres.HARD_ROCK}>Metal</MenuItem>
+              <MenuItem value={genres.COUNTRY}>Country</MenuItem>
+              <MenuItem value={genres.BLUES}>Blues</MenuItem>
+              <MenuItem value={genres.FOLK}>Folk</MenuItem>
             </Select>
           </FormControl>
 
@@ -107,12 +112,12 @@ class HomePage extends Component {
                 id: 'decade-select'
               }}
             >
-              <MenuItem value={60}>60`s</MenuItem>
-              <MenuItem value={70}>70`s</MenuItem>
-              <MenuItem value={80}>80`s</MenuItem>
-              <MenuItem value={90}>90`s</MenuItem>
-              <MenuItem value={0}>00`s</MenuItem>
-              <MenuItem value={10}>10`s</MenuItem>
+              <MenuItem value={decades.SIXTIES}>60`s</MenuItem>
+              <MenuItem value={decades.SEVENTIES}>70`s</MenuItem>
+              <MenuItem value={decades.EIGHTIES}>80`s</MenuItem>
+              <MenuItem value={decades.NINETIES}>90`s</MenuItem>
+              <MenuItem value={decades.TWOTHOUSANDS}>00`s</MenuItem>
+              <MenuItem value={decades.TWOTHOUSANDSTENS}>10`s</MenuItem>
             </Select>
           </FormControl>
           <div className={classes.buttonContainer}>
@@ -121,6 +126,7 @@ class HomePage extends Component {
               variant="contained"
               color="primary"
               className={classes.button}
+              disabled={isLoading}
             >
               Send It
             </Button>
