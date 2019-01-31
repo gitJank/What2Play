@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios'
 
 import { genres, decades } from '../../emuns'
+import TrackView from '../TrackView/TrackView'
 import styles from './HomePage.styles'
 
 class HomePage extends Component {
@@ -21,7 +22,6 @@ class HomePage extends Component {
     this.state = {
       genre: genres.ROCK,
       decade: decades.NINETIES,
-      trackTitle: 'Placeholder',
       isLoading: false
     }
   }
@@ -32,6 +32,15 @@ class HomePage extends Component {
     })
   }
 
+  formatLink = (trackTitle, artistName) => {
+    const formattedValue = [trackTitle, artistName]
+      .join(' by ')
+      .toLowerCase()
+      .replace(/ /g, '%20')
+
+    return `https://www.ultimate-guitar.com/search.php?search_type=title&value=${formattedValue}`
+  }
+
   submitForm = e => {
     e.preventDefault()
     this.setState({
@@ -39,6 +48,16 @@ class HomePage extends Component {
     })
 
     const { genre, decade } = this.state
+
+    console.log({ genre, decade })
+
+    // Will be removed when more choices are added
+    if (genre !== 'rock' || decade !== '90`s') {
+      this.setState({
+        isLoading: false
+      })
+      return
+    }
 
     axios({
       method: 'GET',
@@ -57,8 +76,11 @@ class HomePage extends Component {
         console.log(res)
         this.setState({
           isLoading: false,
-          trackTitle: res.data.name,
-          artistName: res.data.artists[0].name
+          track: {
+            trackTitle: res.data.name,
+            artistName: res.data.artists[0].name,
+            link: this.formatLink(res.data.name, res.data.artists[0].name)
+          }
         })
       })
       .catch(err => {
@@ -71,7 +93,8 @@ class HomePage extends Component {
 
   render() {
     const { classes } = this.props
-    const { genre, decade, isLoading, trackTitle, artistName } = this.state
+    const { genre, decade, isLoading, track } = this.state
+
     return (
       <div className={classes.container}>
         <Paper className={classes.titleCard}>
@@ -135,8 +158,7 @@ class HomePage extends Component {
             ) : null}
           </div>
         </form>
-        <span>{trackTitle}</span>
-        <span>{artistName}</span>
+        {track ? <TrackView track={track} /> : null}
       </div>
     )
   }
