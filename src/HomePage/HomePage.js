@@ -94,7 +94,7 @@ class HomePage extends Component {
             component="h1"
             className={classes.title}
           >
-            What 2 Play
+            The Playing Possum
           </Typography>
         </Paper>
         <form className={classes.form} onSubmit={e => this.submitForm(e)}>
