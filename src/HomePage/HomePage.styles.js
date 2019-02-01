@@ -7,12 +7,12 @@ export default theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '8px',
     marginTop: '32px',
+    padding: '16px',
     width: '80%',
-    border: `4px solid ${theme.palette.primary.main}`,
     height: '120px',
-    background: theme.palette.secondary.main
+    border: '1px solid #00ffd5',
+    backgroundColor: '#98969a'
   },
   container: {
     display: 'flex',

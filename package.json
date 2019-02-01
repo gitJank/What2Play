@@ -4,7 +4,7 @@
   "description": "Web app to choose random songs to learn and play on guitar",
   "scripts": {
     "start": "node server/server.js",
-    "startFe": "./node_modules/.bin/webpack-dev-server --mode development --config ./webpack/webpack.dev.config.js --open --hot --port 8080",
+    "dev": "./node_modules/.bin/webpack-dev-server --mode development --config ./webpack/webpack.dev.config.js --open --hot --port 8080",
     "build": "webpack --config ./webpack/webpack.prod.config.js --mode production",
     "heroku-postbuild": "webpack --config ./webpack/webpack.prod.config.js --mode production"
   },

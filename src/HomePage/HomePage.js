@@ -33,7 +33,9 @@ class HomePage extends Component {
   }
 
   formatLink = (trackTitle, artistName) => {
-    const formattedValue = [trackTitle, artistName]
+    const splitTrack = trackTitle.split(' - ')[0].split(' (')[0]
+
+    const formattedValue = [splitTrack, artistName]
       .join(' by ')
       .toLowerCase()
       .replace(/ /g, '%20')
@@ -49,16 +51,6 @@ class HomePage extends Component {
 
     const { genre, decade } = this.state
 
-    console.log({ genre, decade })
-
-    // Will be removed when more choices are added
-    if (genre !== 'rock' || decade !== '90`s') {
-      this.setState({
-        isLoading: false
-      })
-      return
-    }
-
     axios({
       method: 'GET',
       url: `${process.env.API_URL}/api/spotify`,
@@ -73,7 +65,6 @@ class HomePage extends Component {
       }
     })
       .then(res => {
-        console.log(res)
         this.setState({
           isLoading: false,
           track: {
@@ -118,7 +109,9 @@ class HomePage extends Component {
               }}
             >
               <MenuItem value={genres.ROCK}>Rock</MenuItem>
-              <MenuItem value={genres.HARD_ROCK}>Metal</MenuItem>
+              <MenuItem value={genres.METAL_HARDROCK}>
+                Metal and Hard Rock
+              </MenuItem>
               <MenuItem value={genres.COUNTRY}>Country</MenuItem>
               <MenuItem value={genres.BLUES}>Blues</MenuItem>
               <MenuItem value={genres.FOLK}>Folk</MenuItem>
@@ -135,7 +128,6 @@ class HomePage extends Component {
                 id: 'decade-select'
               }}
             >
-              <MenuItem value={decades.SIXTIES}>60`s</MenuItem>
               <MenuItem value={decades.SEVENTIES}>70`s</MenuItem>
               <MenuItem value={decades.EIGHTIES}>80`s</MenuItem>
               <MenuItem value={decades.NINETIES}>90`s</MenuItem>

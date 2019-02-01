@@ -2,19 +2,20 @@ export default theme => ({
   trackContainer: {
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: '8px',
     marginTop: '32px',
     padding: '16px',
     width: '80%',
-    border: `4px solid ${theme.palette.primary.main}`,
-    height: '120px',
-    background: theme.palette.secondary.main
+    height: 'auto',
+    border: '1px solid #00ffd5',
+    backgroundColor: '#98969a'
   },
   trackTitle: {
     margin: '0px',
-    fontSize: '28px'
+    fontSize: '28px',
+    color: theme.palette.primary.main
   },
   trackArtist: {
-    margin: '0px'
+    margin: '0px 0px 4px 0px',
+    color: theme.palette.primary.main
   }
 })
