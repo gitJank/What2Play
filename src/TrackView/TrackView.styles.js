@@ -2,7 +2,7 @@ export default theme => ({
   trackContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '32px',
+    margin: '32px 0px',
     padding: '16px',
     width: '80%',
     height: 'auto',

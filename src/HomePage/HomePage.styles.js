@@ -1,14 +1,14 @@
 export default theme => ({
   title: {
     color: theme.palette.primary.main,
-    fontSize: '48px'
+    fontSize: '40px'
   },
   titleCard: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '32px',
-    padding: '16px',
+    padding: '4px',
     width: '80%',
     height: '120px',
     border: '1px solid #00ffd5',
