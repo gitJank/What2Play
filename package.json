@@ -4,6 +4,7 @@
   "description": "Web app to choose random songs to learn and play on guitar",
   "scripts": {
     "start": "node server/server.js",
+    "test": "./node_modules/.bin/mocha --require @babel/register --colors --timeout 5000 ./src/**/*.spec.js",
     "dev": "./node_modules/.bin/webpack-dev-server --mode development --config ./webpack/webpack.dev.config.js --open --hot --port 8080",
     "build": "webpack --config ./webpack/webpack.prod.config.js --mode production",
     "heroku-postbuild": "webpack --config ./webpack/webpack.prod.config.js --mode production"
@@ -37,6 +38,8 @@
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
     "css-loader": "^2.1.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",

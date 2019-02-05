@@ -15,7 +15,7 @@ import { genres, decades } from '../../emuns'
 import TrackView from '../TrackView/TrackView'
 import styles from './HomePage.styles'
 
-class HomePage extends Component {
+export class HomePage extends Component {
   constructor(props) {
     super(props)
 
@@ -68,8 +68,8 @@ class HomePage extends Component {
         this.setState({
           isLoading: false,
           track: {
-            trackTitle: res.data.name,
-            artistName: res.data.artists[0].name,
+            title: res.data.name,
+            artist: res.data.artists[0].name,
             link: this.formatLink(res.data.name, res.data.artists[0].name)
           }
         })
@@ -90,6 +90,7 @@ class HomePage extends Component {
       <div className={classes.container}>
         <Paper className={classes.titleCard}>
           <Typography
+            id="header"
             variant="headline"
             component="h1"
             className={classes.title}
@@ -99,8 +100,11 @@ class HomePage extends Component {
         </Paper>
         <form className={classes.form} onSubmit={e => this.submitForm(e)}>
           <FormControl className={classes.select}>
-            <InputLabel htmlFor="genre">Genre</InputLabel>
+            <InputLabel id="select-label-genre" htmlFor="genre">
+              Genre
+            </InputLabel>
             <Select
+              id="genre-select"
               value={genre}
               onChange={this.handleFormChange}
               inputProps={{
@@ -119,8 +123,11 @@ class HomePage extends Component {
           </FormControl>
 
           <FormControl className={classes.select}>
-            <InputLabel htmlFor="decade">Decade</InputLabel>
+            <InputLabel id="select-label-decade" htmlFor="decade">
+              Decade
+            </InputLabel>
             <Select
+              id="decade-select"
               value={decade}
               onChange={this.handleFormChange}
               inputProps={{
@@ -137,13 +144,14 @@ class HomePage extends Component {
           </FormControl>
           <div className={classes.buttonContainer}>
             <Button
+              id="submit-button"
               type="submit"
               variant="contained"
               color="primary"
               className={classes.button}
               disabled={isLoading}
             >
-              Send It
+              Submit
             </Button>
             {isLoading ? (
               <CircularProgress className={classes.progress} />

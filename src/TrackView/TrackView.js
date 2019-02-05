@@ -6,16 +6,29 @@ import Typography from '@material-ui/core/Typography'
 
 import styles from './TrackView.styles'
 
-const TrackView = ({ track, classes }) => {
+export const TrackView = ({ track, classes }) => {
   return (
     <Paper className={classes.trackContainer}>
-      <Typography component="h2" className={classes.trackTitle}>
-        {track.trackTitle}
+      <Typography
+        id="track-title"
+        component="h2"
+        className={classes.trackTitle}
+      >
+        {track.title}
       </Typography>
-      <Typography component="h3" className={classes.trackArtist}>
-        By: {track.artistName}
+      <Typography
+        id="track-artist"
+        component="h3"
+        className={classes.trackArtist}
+      >
+        By: {track.artist}
       </Typography>
-      <a target="_blank" rel="noopener noreferrer" href={track.link}>
+      <a
+        id="link-to-tab"
+        target="_blank"
+        rel="noopener noreferrer"
+        href={track.link}
+      >
         Link To Tabature
       </a>
     </Paper>
