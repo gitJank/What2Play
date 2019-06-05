@@ -1,18 +1,18 @@
-const genres = {
-  ROCK: 'rock',
-  COUNTRY: 'country',
-  METAL_HARDROCK: 'metal/hard rock',
-  BLUES: 'blues',
-  FOLK: 'folk'
-}
+const genres = [
+  { value: 'ROCK', display: 'Rock' },
+  { value: 'COUNTRY', display: 'Country' },
+  { value: 'METAL_HARDROCK', display: 'Metal/Hard Rock' },
+  { value: 'BLUES', display: 'Blues' },
+  { value: 'FOLK', display: 'Folk' }
+]
 
-const decades = {
-  SEVENTIES: '70`s',
-  EIGHTIES: '80`s',
-  NINETIES: '90`s',
-  TWOTHOUSANDS: '00`s',
-  TWOTHOUSANDSTENS: '10`s'
-}
+const decades = [
+  { value: 'SEVENTIES', display: '70`s' },
+  { value: 'EIGHTIES', display: '80`s' },
+  { value: 'NINETIES', display: '90`s' },
+  { value: 'TWOTHOUSANDS', display: '00`s' },
+  { value: 'TWOTHOUSANDSTENS', display: '10`s' }
+]
 
 const playlistIds = {
   SEVENTIES: {
